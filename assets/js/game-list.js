@@ -31,17 +31,34 @@ async function fetchAllGames(page = 1) {
     console.error("Error fetching games:", error);
   }
 }
-
 function setupPagination(games) {
   let totalPages = Math.ceil(games.length / gamesPerPage);
 
   paginationContainer.innerHTML = "";
-  for (let i = 1; i <= totalPages; i++) {
+  updatePaginationButtons(currentPage, totalPages); // Set up pagination buttons
+
+  goToPage(1); // Load the first page by default
+}
+
+function updatePaginationButtons(currentPage, totalPages) {
+  paginationContainer.innerHTML = "";
+
+  // Determine the range of pagination buttons to show
+  let startPage = Math.max(currentPage - 5, 1);
+  let endPage = Math.min(startPage + 9, totalPages);
+
+  // Adjust startPage if we are close to the last page
+  if (endPage - startPage < 9) {
+    startPage = Math.max(endPage - 9, 1);
+  }
+
+  // Create the pagination buttons
+  for (let i = startPage; i <= endPage; i++) {
     let button = document.createElement("button");
     button.textContent = i;
     button.classList.add("page-button");
 
-    // Set the active class on the first page by default
+    // Set the active class on the current page
     if (i === currentPage) {
       button.classList.add("active");
     }
@@ -49,8 +66,6 @@ function setupPagination(games) {
     button.addEventListener("click", () => goToPage(i));
     paginationContainer.appendChild(button);
   }
-
-  goToPage(1); // Load the first page by default
 }
 
 function goToPage(page) {
@@ -63,8 +78,12 @@ function goToPage(page) {
   });
 
   // Add active class to the clicked pagination button
-  let currentButton = paginationContainer.children[page - 1];
-  currentButton.classList.add("active");
+  let currentButton = paginationContainer.querySelector(
+    `button:nth-child(${page - currentPage + 5})`
+  );
+  if (currentButton) {
+    currentButton.classList.add("active");
+  }
 
   items.innerHTML = "";
   let startIndex = (page - 1) * gamesPerPage;
@@ -72,6 +91,12 @@ function goToPage(page) {
   let gamesToShow = allGames.slice(startIndex, endIndex);
 
   displayGames(gamesToShow);
+
+  // Update pagination buttons dynamically
+  updatePaginationButtons(
+    currentPage,
+    Math.ceil(allGames.length / gamesPerPage)
+  );
 }
 
 document.title = "GamesReaper" + "-All Games";
