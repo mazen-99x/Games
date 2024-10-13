@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GamesReaper</title>
+    <link
+      rel="icon"
+      href="assets/images/logo-remove.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="assets/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body class="diff-page">
+        <div class="loading">
+      <span class="loader"></span>
+    </div>
+        <div id="confirmModal" class="confirm-modal">
+      <div class="confirm-modal-content">
+        <p id="confirmMessage">Are you sure you want to proceed?</p>
+        <button id="confirmYes" class="confirm-btn yes">Yes</button>
+        <button id="confirmNo" class="confirm-btn no">No</button>
+      </div>
+    </div>
+    <!-- header -->
+    <header class="header" id="header">
+            <i class="fa-solid fa-bars btn_open_menu"></i>
+     <nav class="container">
+       <div class="logo">
+        <a href="index.html">
+          <img src="assets/images/logo.png" alt="logo" />
+        </a>
+       </div>
+      </div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+        <div class="button">
+          <a href="./login.html">
+            <button class="btn login">Login</button>
+          </a>
+          <a href="./signup.html">
+            <button class="btn signup">Signup</button>
+          </a>
+        </div>
+        <div class="buttons">
+          <p class="user">welcome</p>
+          <button class="btn signout">Signout</button>
+        </div>
+     </nav>
+    </header>
+    <!-- header  -->
+
+     <!-- games -->
+      <section class="game" id="game">
+        <div class="container">
+          <h2 class="title list-title">All Games</h2>
+          <div class="items" id="items">
+          </div>
+          <div class="pagination" id="pagination"></div>
+        </div>
+      </section>
+     <!-- games -->
+       <!-- =========== goToTop ========== -->
+      <div
+      class="goTop fa-regular fa-arrow-alt-circle-up fa-2x"
+      id="gototop"
+    ></div>
+    <!-- =========== footer ========= -->
+    <footer>
+      <div class="container">
+        <div class="big_row">
+          <img src="assets/img/logo-white.png" alt="" />
+          <div class="hotline">
+            <i class="fa-solid fa-headset"></i>
+            <div class="text">
+              <h5>Hotline free 24/24</h5>
+              <h6>(+100) 127 434 9877</h6>
+            </div>
+          </div>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Consectetur, possimus.
+          </p>
+        </div>
+
+        <div class="row">
+          <h4>FAQ & Help</h4>
+          <div class="links">
+            <a href="#">F.A.Q</a>
+            <a href="#">Ordering Tracking</a>
+            <a href="#">Contacts</a>
+            <a href="#">Events</a>
+            <a href="#">Help Center</a>
+          </div>
+        </div>
+
+        <div class="row">
+          <h4>Shipping & Information</h4>
+          <div class="links">
+            <a href="#">Delivery Information</a>
+            <a href="#">Discount</a>
+            <a href="#">Payment & Shipping</a>
+            <a href="#">Estimated Delivery Time</a>
+            <a href="#">Shipping Guide</a>
+          </div>
+        </div>
+
+        <div class="row">
+          <h4>Information</h4>
+          <div class="links">
+            <a href="#">Popular</a>
+            <a href="#">Our Services</a>
+            <a href="#">Your Account</a>
+            <a href="#">PRrivacy Policy</a>
+            <a href="#">Terms & Condition</a>
+          </div>
+        </div>
+      </div>
+      <div class="bottom_footer">
+        <div class="container">
+          <p>Copyright &copy; <span>GamesReaper.</span> all rights reserved</p>
+          <div class="payment_img">
+            <img src="assets/images/payment-1.png" alt="" />
+            <img src="assets/images/payment-2.png" alt="" />
+            <img src="assets/images/payment-3.png" alt="" />
+            <img src="assets/images/payment-4.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </footer>
+      
+    
+     
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+
+    <script src="assets/js/global.js"></script>
+    <script src="assets/js/game-list.js"></script>
+  </body>
+</html>
