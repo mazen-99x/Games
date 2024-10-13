@@ -102,27 +102,42 @@ function goToPage(page) {
 document.title = "GamesReaper" + "-All Games";
 function displayGames(games) {
   games.forEach((ele) => {
-    // Check if 'ele' has the required properties before rendering
+    // Ensure 'ele' (the game object) exists and has the necessary properties
     if (!ele || !ele.name || !ele.genres || !ele.platforms) {
       console.warn("Game data is incomplete or undefined:", ele);
-      return; // Skip this game if it's missing data
+      return; // Skip rendering if the game data is incomplete
     }
 
     let item = document.createElement("div");
-    let genres = ele.genres.map((genre) => genre.name).join(", ");
-    let platforms = ele.platforms
-      .slice(0, 1)
-      .map((platform) => platform.platform.name)
-      .join(", ");
+
+    // Check if genres exist, if not provide a fallback
+    let genres =
+      ele.genres && ele.genres.length > 0
+        ? ele.genres.map((genre) => genre.name).join(", ")
+        : "Unknown Genre";
+
+    // Check if platforms exist, if not provide a fallback
+    let platforms =
+      ele.platforms && ele.platforms.length > 0
+        ? ele.platforms
+            .slice(0, 1)
+            .map((platform) => platform.platform.name)
+            .join(", ")
+        : "Unknown Platform";
+
+    // Ensure the image exists, if not, provide a placeholder image
+    let backgroundImage = ele.background_image || "placeholder-image-url"; // Use a fallback URL if image is missing
 
     item.classList.add("item");
     item.innerHTML = `
       <a onclick="getDetails(${ele.id})" href="./details.html">
-        <img src="${ele.background_image}" alt="Game Image">
+        <img src="${backgroundImage}" alt="Game Image">
       </a>
       <div class="content">
         <p class="name">Name: <span>${ele.name}</span></p>
-        <p class="rating">Rating: <span>${ele.rating}</span></p>
+        <p class="rating">Rating: <span>${
+          ele.rating ? ele.rating : "No Rating"
+        }</span></p>
         <p class="genre">Genre: <span>${genres}</span></p>
         <p class="platform">Platform: <span>${platforms} , ...</span></p>
       </div>`;
