@@ -102,24 +102,31 @@ function goToPage(page) {
 document.title = "GamesReaper" + "-All Games";
 function displayGames(games) {
   games.forEach((ele) => {
+    // Check if 'ele' has the required properties before rendering
+    if (!ele || !ele.name || !ele.genres || !ele.platforms) {
+      console.warn("Game data is incomplete or undefined:", ele);
+      return; // Skip this game if it's missing data
+    }
+
     let item = document.createElement("div");
     let genres = ele.genres.map((genre) => genre.name).join(", ");
     let platforms = ele.platforms
       .slice(0, 1)
       .map((platform) => platform.platform.name)
       .join(", ");
+
     item.classList.add("item");
     item.innerHTML = `
-                  <a onclick="getDetails(${ele.id})" href="./details.html">
-                  <img src="${ele.background_image}" alt=""></a>
-                <div class="content">
-                  <p class="name">Name:<span>${ele.name}</span></p>
-                  <p class="rating">Rating:<span>${ele.rating}</span></p>
-                  <p class="genre">Genre:<span>${genres}</span></p>
-                  <p class="platform">Platform:<span>${
-                    platforms + " , ..."
-                  }</span></p>
-                </div>`;
+      <a onclick="getDetails(${ele.id})" href="./details.html">
+        <img src="${ele.background_image}" alt="Game Image">
+      </a>
+      <div class="content">
+        <p class="name">Name: <span>${ele.name}</span></p>
+        <p class="rating">Rating: <span>${ele.rating}</span></p>
+        <p class="genre">Genre: <span>${genres}</span></p>
+        <p class="platform">Platform: <span>${platforms} , ...</span></p>
+      </div>`;
+
     items.appendChild(item);
   });
 }
